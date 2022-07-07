@@ -30,7 +30,7 @@ export default {
         width: 30rem;
         height: 28rem;
         padding: 1.5rem;
-        margin: 20% auto;
+        margin: 10% auto;
         display: flex;
         flex-direction: column;
         border-radius: 1rem;

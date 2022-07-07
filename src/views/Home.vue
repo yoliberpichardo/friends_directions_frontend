@@ -7,15 +7,15 @@ export default {
   name: 'Home',
   components: {
     User,
-    NavBar,
-    Login
-}
+    Login,
+    NavBar
+  }
 }
 </script>
 
 <template>
   <div class="home">
-    <NavBar />
+    <NavBar/>
     <Login/>
   </div>
 </template>
