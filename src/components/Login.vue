@@ -1,6 +1,22 @@
 <script>
-export default {
+import { onMounted } from '@vue/runtime-core'
+import getOptions from '../api/dataBase'
+import {config} from 'dotenv'
+config()
 
+export default {
+    setup(props) {
+
+        onMounted(async () => {
+           const get =  await getOptions.get('user')
+           console.log(process.env);
+           console.log(get.data);
+        })
+            
+        return{
+
+        }   
+    }
 }
 </script>
 
