@@ -1,53 +1,58 @@
 <script>
-import {ref} from '@vue/runtime-core'
+import {onUpdated, ref} from '@vue/runtime-core'
 import getOptions from '../api/dataBase'
 
 export default {
     setup(props) {
         const result_email = ref('')
         const result_password = ref('')
-
+        const result_name = ref('')
 
         const sendData = async () => {
-            const userCompare = await getOptions.post('login',{
-                    "email": result_email.value,
-                    "password": result_password.value,
+            const userCompare = await getOptions.post('register',{
+                "name": result_name.value,
+                "email": result_email.value,
+                "password":result_password.value,
             })
-            console.log(userCompare.data);
+            const get = await getOptions.get('user')
+            console.log(userCompare.data,get.data);
             
         }
 
         return{
             result_email,
             result_password,
-            sendData
+            result_name,
+            sendData,
         }   
     }
 }
 </script>
 
 <template>
-  <div class="bodyLogin">
-    <div class="descriptionLogin">
-        <h1>Log In</h1>
-        <p>Login here using your email and password</p>
+  <div class="bodyRegister">
+    <div class="descriptionRegister">
+        <h1>Register</h1>
     </div>
     <div class="bodyForm">
         <div class="inputContent">
+            <label>Name</label>
+            <input type="text" placeholder="Name" v-model="result_name">
+            <label>Email</label>
             <input type="text" placeholder="Email" v-model="result_email">
-            <input type="password" placeholder="Password" v-model="result_password">
+            <label>Password</label>
+            <input type="text" placeholder="Password" v-model="result_password">
         </div>
 
         <div class="buttonContent">
-            <p>Forgot your <a href="#">password</a>?</p>
-            <button @click="sendData">Log In</button>
+            <button @click="sendData">Register</button>
         </div>
     </div>
   </div>
 </template>
 
 <style scope>
-    .bodyLogin{
+    .bodyRegister{
         background: #28d9e6;
         width: 30rem;
         height: 28rem;
@@ -58,11 +63,11 @@ export default {
         border-radius: 1rem;
     }
 
-    .descriptionLogin{
+    .descriptionRegister{
         height: 30%;
     }
 
-    .descriptionLogin h1, .descriptionLogin p {
+    .descriptionRegister h1{
         margin: 1rem;
     }
 
@@ -83,7 +88,7 @@ export default {
     .inputContent input{
         width: 20rem;
         height: 2rem;
-        margin: 1rem auto;
+        margin: 0.1rem auto 1rem auto;
         padding: 7px;
         border-radius: 0.5rem;
         border: none;
@@ -100,7 +105,7 @@ export default {
         width: 40%;
         height: 2rem;
         background-color: #fff;
-        border-style: none;
+        /* border-style: none; */
         border-radius: 0.5rem;
         margin: 1rem auto;
     } 
