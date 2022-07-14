@@ -1,3 +1,18 @@
+<script>
+import { onMounted } from 'vue-demi'
+import useStore from './store/store'
+    import getOptions from './api/dataBase'
+export default {
+  setup(){
+    const use = useStore()
+
+      onMounted(async () => {
+          use.friendsData = await( await getOptions.get('/user')).data.data
+      })
+  }
+}
+</script>
+
 <template>
   <router-view/>
 </template>

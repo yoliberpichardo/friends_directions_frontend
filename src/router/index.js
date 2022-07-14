@@ -3,6 +3,11 @@ import Home from '../views/Home.vue'
 
 const routes = [
   {
+    path: '/search',
+    name: 'Search',
+    component: () => import('../layouts/SearchFriends.vue')
+  },
+  {
     path:'/login',
     name: 'Login',
     component: () => import('../components/Login.vue')
