@@ -1,20 +1,21 @@
 <script>
 import {ref} from '@vue/runtime-core'
 import getOptions from '../api/dataBase'
-
+import router from '../router/index'
 export default {
+    name: 'Login',
     setup(props) {
         const result_email = ref('')
         const result_password = ref('')
-
 
         const sendData = async () => {
             const userCompare = await getOptions.post('login',{
                     "email": result_email.value,
                     "password": result_password.value,
             })
-            console.log(userCompare.data);
-            
+            localStorage.setItem('token',userCompare.data.token)
+            return router.replace({ path: '/search' })
+        
         }
 
         return{
@@ -22,6 +23,11 @@ export default {
             result_password,
             sendData
         }   
+    },
+    methods:{
+        redirectRouter() {
+            
+        }
     }
 }
 </script>

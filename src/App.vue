@@ -1,7 +1,7 @@
 <script>
 import { onMounted } from 'vue-demi'
 import useStore from './store/store'
-    import getOptions from './api/dataBase'
+  import getOptions from './api/dataBase'
 export default {
   setup(){
     const use = useStore()
