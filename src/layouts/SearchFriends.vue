@@ -15,11 +15,12 @@
             })
 
             const sendResquet = async (uid) => {
-               await getOptions.post('resquet_send', {friendID: uid},{
+               const resquet_send = await getOptions.post('resquet_send', {friendID: uid},{
                 headers:{
                     authorization:`bearer ${token}`
                 }
                })
+               console.log(resquet_send);
             }
 
             return{
@@ -52,6 +53,9 @@
 </template>
 
 <style scoped>
+.bodySearch{
+    color: #000;
+}
 
 .inputContent input{
     border: solid #000 .1px;
