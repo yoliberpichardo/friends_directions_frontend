@@ -1,17 +1,3 @@
-<script>
-import { onMounted } from 'vue-demi'
-import useStore from './store/store'
-  import getOptions from './api/dataBase'
-export default {
-  setup(){
-    const use = useStore()
-
-      onMounted(async () => {
-          use.friendsData = await( await getOptions.get('/user')).data.data
-      })
-  }
-}
-</script>
 
 <template>
   <router-view/>
@@ -24,7 +10,7 @@ export default {
   margin: 0;
 }
 
-html, body{
+body{
   width: 100%;
   height: 100%;
 }
@@ -33,7 +19,7 @@ html, body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #fff;
 }
 
 #nav {

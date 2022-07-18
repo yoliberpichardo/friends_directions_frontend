@@ -3,12 +3,12 @@
     import { ref } from '@vue/reactivity'
     import {watch} from '@vue/runtime-core'
     import useStore from '../store/store'
-import getOptions from '../api/dataBase'
+    import getOptions from '../api/dataBase'
     export default {
         setup(){
-            const friendsData = ref([])
             const use = useStore()
             const result = ref('')
+            const token = localStorage.getItem('token')
 
             watch(result,() => {
                 use.friendsSearch = result.value
@@ -17,13 +17,12 @@ import getOptions from '../api/dataBase'
             const sendResquet = async (uid) => {
                await getOptions.post('resquet_send', {friendID: uid},{
                 headers:{
-                    authorization:"bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZDA3MGQwYzFhYjk2ZDI0OGMzYzZhMiIsImlhdCI6MTY1NzgyODY1NH0.eyRVUjFYV32QsqKSivqPzXmfGAxYOlX8PQ5nNZjSdag"
+                    authorization:`bearer ${token}`
                 }
                })
             }
 
             return{
-                friendsData,
                 use,
                 result,
                 sendResquet

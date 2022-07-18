@@ -5,25 +5,28 @@ const token = localStorage.getItem('token')
 
 const routes = [
   {
-    path: '/search',
-    name: 'Search',
-    meta : { requiresAuth: true },
-    component: () => import('../layouts/SearchFriends.vue')
-  },
-  {
     path:'/login',
     name: 'Login',
-    component: () => import('../components/Login.vue')
+    component: () => import('../components/Login.vue'),
+    meta : { requiresAuth: false },
   },
   {
     path:'/register',
-    name: 'register',
+    name: 'Register',
     component: () => import('../components/Register.vue')
   },
   {
     path: '/home',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta : { requiresAuth: true },
+    children:[
+      {
+        path: 'search',
+        name: 'Search',
+        component: () => import('../layouts/SearchFriends.vue')
+      },
+    ]
   },
 ]
 
@@ -35,9 +38,7 @@ const router = createRouter({
 router.beforeEach(async (to, from) => {
   if (
     // make sure the user is authenticated
-    !token &&
-    // ❗️ Avoid an infinite redirect
-    to.name !== 'Login'
+    !token && to.name !== 'Register' && to.name !== 'Login' 
   ) {
     // redirect the user to the login page
     return { name: 'Login' }
