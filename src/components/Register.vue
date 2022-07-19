@@ -22,7 +22,7 @@ export default {
           password: result_password.value,
         });
         console.log(userCompare);
-        // return userCompare, router.replace({ path: "/login" });
+        return userCompare, router.replace({ path: "/login" });
       }
     };
 
@@ -124,7 +124,4 @@ export default {
   color: #000;
 }
 
-.buttonContent button:hover {
-  border-style: solid #06e0f8 1px;
-}
 </style>

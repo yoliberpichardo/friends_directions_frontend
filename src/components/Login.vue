@@ -147,7 +147,7 @@ export default {
 }
 
 .buttonContent button:hover {
-  background-color: #9f9f9f;
+  background-color: #ffffffd6;
   border-style: solid 3px #8ae6f6;
 }
 

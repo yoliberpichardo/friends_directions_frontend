@@ -10,10 +10,6 @@
             const result = ref('')
             const token = localStorage.getItem('token')
 
-            watch(result,() => {
-                use.friendsSearch = result.value
-            })
-
             const sendResquet = async (uid) => {
                const resquet_send = await getOptions.post('resquet_send', {friendID: uid},{
                 headers:{
@@ -25,7 +21,6 @@
 
             return{
                 use,
-                result,
                 sendResquet
             }
         }
@@ -35,7 +30,7 @@
 <template>
     <div class="bodySearch">
         <div class="inputContent">
-            <input type="text" v-model="result">
+            <input type="text" v-model="use.friendsSearch">
         </div>
         <div class="resutlFriends" v-for="friend in use.friendsUpdate()" :key="friend.uid">
             <div class="bodyResult">
@@ -54,7 +49,12 @@
 
 <style scoped>
 .bodySearch{
+    margin: 3.1rem 0 0 0;
     color: #000;
+}
+
+.inputContent {
+    background-color: aqua;
 }
 
 .inputContent input{
